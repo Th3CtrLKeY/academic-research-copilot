@@ -33,11 +33,12 @@ def process_and_chunk_pdf(pdf_path: str) -> list:
     loader = UnstructuredPDFLoader(pdf_path)
     documents = loader.load()
     
-    # The entire PDF is loaded as a list of documents. Concatenate their content.
+    
     full_text = "\n".join(doc.page_content for doc in documents)
     
     print("Chunking document semantically...")
-    # We use the Gemini embedding model for semantic chunking
+
+    # Gemini embedding model for semantic chunking
     gemini_api_key = os.getenv("GEMINI_API_KEY")
     embeddings = GoogleGenerativeAIEmbeddings(model="models/embedding-001", google_api_key=gemini_api_key)
     
@@ -71,7 +72,7 @@ def create_and_get_retriever(chunks: list, index_name: str):
     # Return a retriever object for querying
     return vector_store.as_retriever()
 
-# This block allows us to test the RAG pipeline directly
+# Test the RAG pipeline directly
 if __name__ == '__main__':
     from dotenv import load_dotenv
     from tools import search_arxiv

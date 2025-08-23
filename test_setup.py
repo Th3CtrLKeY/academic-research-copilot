@@ -8,7 +8,7 @@ load_dotenv()
 api_key = os.getenv("GEMINI_API_KEY")
 
 if api_key:
-    print("✅ API key loaded successfully!")
+    print("API key loaded successfully!")
     print(f"   Your API key starts with: {api_key[:4]}...")
 else:
-    print("❌ Failed to load API key. Please check your.env file.")
+    print("Failed to load API key. Please check your.env file.")
